@@ -129,6 +129,9 @@
   <ItemGroup>
     <ClCompile Include="CPPAI.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DenseNeuralNet.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
