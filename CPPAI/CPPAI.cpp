@@ -5,46 +5,33 @@
 #include <ctime>
 #include <cstdlib>
 #include "DenseNeuralNet.h"
+#include <windows.h>
+#include "Render.h"
+#include <fcntl.h>
+#include <io.h>
+#include "TicTacToe.h"
 
-double inp[4][2] = { {0,0},{1,1},{0,1}, {1,0}  };
-double out[4][1] = { {1},{1},{0},{0} };
-DenseNeuralNet Brain({ 2,3,1 });
 using namespace std;
 
-void training()
-{
-    //Brain.debug();
 
-
-    for (int i = 0; i <= 50000; i++)
-    {
-        for (int j = 0; j < 4; j++)
-        {
-            double loss = 0;
-            Brain.backward(inp[j], out[j], 0.02f, loss);
-        }
-    }
-
-    //Brain.debug();
-}
 
 int main()
 {
+
     srand((unsigned)time(0));
-    double a[] = {0,1};
-    double b[] = {0};
-    Brain.forward(a, b);
-    std::cout << "First: " << b[0] << "\n";
-    
-    training();
-
+    screen.consoleHandle = GetStdHandle(STD_INPUT_HANDLE);
+    SetConsoleMode(screen.consoleHandle, ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT);
 
     
-    for (int j = 0; j < 4; j++)
+
+    while (true)
     {
-        cout << inp[j][0] << " " << inp[j][1] << " ";
-        Brain.forward(inp[j], b);
-        std::cout << b[0] << "\n";
-        b[0] = 0;
+        //clear previos screen
+        screen.Clear();
+
+        if (RunGame()) return 0;
+        Sleep(10);
     }
+
+
 }

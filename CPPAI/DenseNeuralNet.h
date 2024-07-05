@@ -30,10 +30,9 @@ public:
     double** bias = 0;
     DenseNeuralNet(std::initializer_list<int> layers)
     {
-        if (layers.size() == 0) return;
         all_layer_count = layers;
-        weights = new double** [layers.size() - 1];
-        bias = new double* [layers.size()];
+        weights = new double** [all_layer_count.size() - 1];
+        bias = new double* [all_layer_count.size()];
         bias[0] = new double[all_layer_count[0]];
         for (int layer = 0; layer < int(layers.size()) - 1; layer++)
         {
@@ -81,7 +80,6 @@ public:
 
         for (int layer = 0; layer < all_layer_count.size(); layer++)
         {
-
             //set inp to current
             if (!layer)
             {
